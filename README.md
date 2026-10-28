@@ -1,7 +1,7 @@
 # AutoSciAgent
 
 **AutoSciAgent** is an autonomous, general-purpose **Physical Simulation and Partial Differential Equation (PDE) Solver Agent**. 
-We aim at developing a secure, self-verifying scientific computing workflow, based on the following concepts: **Control Theory** and **Agent = Model + Harness** ([HARNESS²](https://arxiv.org/abs/2610.14224) and [RRSI](https://arxiv.org/abs/2609.24972)).
+We aim at developing a secure, self-verifying scientific computing workflow based on **Control Theory** and **Agent = Model + Harness** ([HARNESS²](https://arxiv.org/abs/2610.14224) and [RRSI](https://arxiv.org/abs/2609.24972)).
 
 Given a high-level physical simulation task (`workspace/inputs/task.md`), markdown harness instructions (`harness/*.md`), and optional reference documents (`.pdf`, `.docx`, `.md`) in `workspace/inputs/references/`, the agent autonomously:
 
@@ -325,7 +325,7 @@ All nodes can read, write, revise, add, and remove files inside `workspace/`, bu
 * Installs extra Python packages into `workspace/.venv`
 * Executes generated solver scripts
 
-pauses and prompts the human operator in the terminal (`Approve this operation? [Y/n]:`) via `core/tools_hitl.py`.
+Pauses and prompts the human operator in the terminal (`Approve this operation? [Y/n]:`) via `core/tools_hitl.py`.
 
 ### Four-Tier Long-Horizon OOM Protection
 * **Subagent Reference Digestion (`C5`)**: Large `.pdf` and `.docx` files in `workspace/inputs/references/` are processed in an isolated subagent call (`reference_digester`) that returns only extracted equations and property tables under 400 words.
@@ -395,14 +395,14 @@ By default, `workspace/inputs/task.md` instructs the agent to solve the 2D stead
 
 $$k_x \frac{\partial^2 T}{\partial x^2} + k_y \frac{\partial^2 T}{\partial y^2} = 0$$
 
-using the 5-point Finite Difference stencil derived by `deriver.py`:
+Using the 5-point Finite Difference stencil derived by `deriver.py`:
 
 $$T_{i,j}^{(k+1)} = \frac{k_x \left(T_{i,j+1}^{(k)} + T_{i,j-1}^{(k)}\right) + k_y \left(T_{i+1,j}^{(k)} + T_{i-1,j}^{(k)}\right)}{2(k_x + k_y)}$$
 
 across three boundary condition and material property scenarios:
-* **Case A (Baseline Isotropic)**: Top wall $T = 100.0\text{ }^\circ\text{C}$, Bottom/Left/Right walls $T = 25.0\text{ }^\circ\text{C}$, $k_x = 1.0$, $k_y = 1.0\text{ W/(m}\cdot\text{K)}$.
-* **Case B (Elevated Boundary)**: Top wall $T = 200.0\text{ }^\circ\text{C}$, Bottom/Left/Right walls $T = 25.0\text{ }^\circ\text{C}$, $k_x = 1.0$, $k_y = 1.0\text{ W/(m}\cdot\text{K)}$.
-* **Case C (Anisotropic Composite)**: Top wall $T = 200.0\text{ }^\circ\text{C}$, Bottom/Left/Right walls $T = 25.0\text{ }^\circ\text{C}$, $k_x = 3.0$, $k_y = 1.0\text{ W/(m}\cdot\text{K)}$.
+* **Case A (Baseline Isotropic)**: Top wall $T = 40.0\text{ }^\circ\text{C}$, Bottom/Left/Right walls $T = 25.0\text{ }^\circ\text{C}$, $k_x = 1.0$, $k_y = 1.0\text{ W/(m}\cdot\text{K)}$.
+* **Case B (Elevated Boundary)**: Top wall $T = 50.0\text{ }^\circ\text{C}$, Bottom/Left/Right walls $T = 25.0\text{ }^\circ\text{C}$, $k_x = 1.0$, $k_y = 1.0\text{ W/(m}\cdot\text{K)}$.
+* **Case C (Anisotropic Composite)**: Top wall $T = 50.0\text{ }^\circ\text{C}$, Bottom/Left/Right walls $T = 25.0\text{ }^\circ\text{C}$, $k_x = 3.0$, $k_y = 1.0\text{ W/(m}\cdot\text{K)}$.
 
 ### Generated Deliverables on Disk
 After `python main.py` completes, inspect the following files:
