@@ -2,7 +2,7 @@
 
 We aim to develop a secure, self-verifying scientific computing workflow working as an autonomous, general-purpose **1D/2D/3D Physical Simulation and Partial Differential Equation (PDE) Solver Agent** (**AutoSciAgent**), based on **Hierarchical Feedback Control Theory** and **Agent = Model + Harness** ([HARNESS²](https://arxiv.org/abs/2610.14224) and [RRSI](https://arxiv.org/abs/2609.24972)).
 
-Given a high-level physical simulation task (`tasks/<task_id>/<task_id>.md`), optional parameter text files (`tasks/<task_id>/*.txt`), and markdown harness instructions (`harness/*.md`), the agent processes tasks sequentially one by one, and autonomously:
+Given a high-level physical simulation task (`tasks/<task_id>/<task_id>.md`), optional parameter text files (`tasks/<task_id>/*.txt`), and markdown harness instructions (`harness/*.md`), the agent processes tasks sequentially:
 
 - **Parses requirements, extracts physical/numerical parameters into variables from `.md`/`.txt` files, and runs a Pre-Audit Feasibility Gate** directly on the decoupled, read-only `tasks/<task_id>/` folder—evaluating 1D/2D/3D PDE well-posedness and clamping grid memory within safe CPU/GPU RAM bounds before planning.
 - **Checks prior numerical knowledge in strict priority order (`SKILL.md` $\rightarrow$ `library/INDEX.md` & `EXPERIENCE.md`) and skips them if empty**, falling back cleanly to first-principles mathematical derivation.
@@ -305,16 +305,10 @@ All parameters (domain lengths, grid resolutions, time steps, boundary temperatu
 **Example 1 (`tasks/task_0001/task_0001.md`) — 1D Transient Heat Conduction Equation**
 
    $$\frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2}, \alpha = \frac{k_x}{\rho c_p}$$
-   
-   Discretized via the 3-point FTCS scheme with automatic Courant–Friedrichs–Lewy Fourier stability sub-stepping
-   
-   $$\text{Fo} = \frac{\alpha \Delta t}{(\Delta x)^2} \le \text{Fo}_{\max}$$
 
 **Example 2 (`tasks/task_0002/task_0002.md`) — 2D Transient & Steady-State Orthotropic Heat Conduction**
 
    $$k_x \frac{\partial^2 T}{\partial x^2} + k_y \frac{\partial^2 T}{\partial y^2} = 0$$
-   
-   Discretized via the 5-point orthotropic Finite Difference stencil across `Case_A_Baseline_Isotropic`, `Case_B_Elevated_Boundary`, and `Case_C_Anisotropic_Conductivity`.
 
 **Example 3 (`tasks/task_0003/task_0003.md`) — 3D Steady-State Anisotropic Heat Conduction**
 
