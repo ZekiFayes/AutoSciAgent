@@ -293,10 +293,7 @@ AutoSciAgent/
 │
 ├── logs/
 │   └── system/
-└── tests/
-    ├── __init__.py
-    ├── test_nodes.py
-    └── test_workflow.py
+
 ```
 
 ---
@@ -305,15 +302,29 @@ AutoSciAgent/
 
 All parameters (domain lengths, grid resolutions, time steps, boundary temperatures, thermal conductivities, and scenario sweeps) are stored in `tasks/<task_id>/<task_id>.md` (or `.txt` files) and loaded into variables at runtime.
 
-1. **Example 1 (`tasks/task_01/task_01.md`) — 1D Transient Heat Conduction Equation**:
-   $$\frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2}, \qquad \alpha = \frac{k_x}{\rho c_p}$$
-   Discretized via the 3-point FTCS scheme with automatic Courant–Friedrichs–Lewy Fourier stability sub-stepping ($\text{Fo} = \frac{\alpha \Delta t}{(\Delta x)^2} \le \text{Fo}_{\max}$).
-2. **Example 2 (`tasks/task_02/task_02.md`) — 2D Transient & Steady-State Orthotropic Heat Conduction**:
+**Example 1 (`tasks/task_0001/task_0001.md`) — 1D Transient Heat Conduction Equation**
+
+   $$\frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2}, \alpha = \frac{k_x}{\rho c_p}$$
+   
+   Discretized via the 3-point FTCS scheme with automatic Courant–Friedrichs–Lewy Fourier stability sub-stepping
+   
+   $$\text{Fo} = \frac{\alpha \Delta t}{(\Delta x)^2} \le \text{Fo}_{\max}$$
+
+**Example 2 (`tasks/task_0002/task_0002.md`) — 2D Transient & Steady-State Orthotropic Heat Conduction**
+
    $$k_x \frac{\partial^2 T}{\partial x^2} + k_y \frac{\partial^2 T}{\partial y^2} = 0$$
+   
    Discretized via the 5-point orthotropic Finite Difference stencil across `Case_A_Baseline_Isotropic`, `Case_B_Elevated_Boundary`, and `Case_C_Anisotropic_Conductivity`.
-3. **Example 3 (`tasks/task_03/task_03.md`) — 3D Steady-State Anisotropic Heat Conduction in a Wood Sample**:
+
+**Example 3 (`tasks/task_0003/task_0003.md`) — 3D Steady-State Anisotropic Heat Conduction**
+
    $$\frac{\partial}{\partial x} \left( k_{x} \frac{\partial T}{\partial x} \right) + \frac{\partial}{\partial y} \left( k_{y} \frac{\partial T}{\partial y} \right) + \frac{\partial}{\partial z} \left( k_{z} \frac{\partial T}{\partial z} \right) = 0$$
-   with Dirichlet bottom contact $T(x,y,0) = T_{\text{bed}}(x,y)$, Robin top convection $-k_{\text{top}} \frac{\partial T}{\partial z}\big|_{z=L_z} = h(T_{\text{top}} - T_\infty)$, and adiabatic Neumann lateral walls across **Uniform**, **Linear**, and **Random Stratified** through-thickness conductivity distributions $k_{z,i,j}(z)$.
+   
+   with Dirichlet bottom contact $T(x,y,0) = T_{\text{bed}}(x,y)$, Robin top convection 
+   
+   $$-k_{\text{top}} \frac{\partial T}{\partial z}\big|_{z=L_z} = h(T_{\text{top}} - T_\infty)$$
+   
+   and adiabatic Neumann lateral walls across **Uniform**, **Linear**, and **Random Stratified** through-thickness conductivity distributions $k_{z,i,j}(z)$.
 
 ---
 
