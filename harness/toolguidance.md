@@ -1,0 +1,3 @@
+- In the Code & Debug Phase, inspect `stderr_traceback`, `intermediate_results_digest` (from `scripts/inspect_results.py`), `mcp_read_file` (for log/CSV windows), and `mcp_inspect_results` (for `.npz` shapes, `NaN`/`Inf` counts, and boundary slices `T[0]`, `T[-1]`).
+- Always create parent directories (`Path(...).parent.mkdir(parents=True, exist_ok=True)`) before saving `.npz` results, `.csv` tables, or `.png` plots.
+- Write device-agnostic solver code (`cupy` if CUDA GPU is available, else `numpy`/`scipy`), converting arrays back to CPU NumPy before saving `.npz`, `.csv`, or plotting.

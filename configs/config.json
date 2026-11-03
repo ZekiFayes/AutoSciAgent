@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0",
+  "llm": {
+    "provider": "gemini",
+    "model_id": "gemini-3.5-flash-lite",
+    "temperature": 0.1,
+    "retry_temperature_step": 0.15,
+    "max_retry_temperature": 0.6,
+    "deterministic_temperature": 0.0
+  },
+  "agent": {
+    "recursion_limit": 50,
+    "max_req_retries": 2,
+    "max_deriv_retries": 2,
+    "max_inner_retries": 3,
+    "max_outer_loops": 2,
+    "execution_timeout_sec": 120,
+    "hardware_probe_timeout_sec": 10,
+    "hitl_enabled": true,
+    "max_log_tail_lines": 40,
+    "max_traceback_lines": 60,
+    "max_read_lines": 150,
+    "max_solver_code_lines": 600,
+    "max_grep_matches": 50,
+    "max_skill_preview_chars": 800,
+    "middleware_max_line_chars": 300,
+    "min_valid_png_bytes": 500,
+    "memory_safety_fraction": 0.8,
+    "rrsi_max_always_on_chars": 24000
+  },
+  "hardware_defaults": {
+    "os": "Windows",
+    "cpu_cores": 4,
+    "gpu_available": false,
+    "gpu_backend": "cpu_numpy",
+    "device_name": "CPU",
+    "free_ram_mb": 4096,
+    "bytes_per_float": 8,
+    "arrays_1d": 4,
+    "arrays_2d": 6,
+    "arrays_3d": 10,
+    "min_clamped_grid_dim": 8
+  },
+  "paths": {
+    "shared_venv_dir": ".venv",
+    "tasks_dir": "tasks",
+    "workspace_root": "workspace",
+    "system_logs_dir": "logs",
+    "harness_dir": "harness",
+    "library_dir": "library",
+    "spec_relative_path": "specs/simulation_spec.json",
+    "derivation_relative_path": "derivations/derivation.md",
+    "solver_relative_path": "scripts/solver.py",
+    "results_relative_path": "outputs/results/simulation_fields.npz",
+    "metrics_relative_path": "outputs/data/summary_metrics.csv",
+    "plot_relative_path": "outputs/plots/comparison.png",
+    "report_relative_path": "outputs/reports/final_report.md"
+  }
+}

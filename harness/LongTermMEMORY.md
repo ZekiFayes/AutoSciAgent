@@ -1,0 +1,3 @@
+- Always call `matplotlib.use('Agg')` before importing `matplotlib.pyplot` so figures render reliably on headless environments.
+- During solver subprocess execution, the working directory is `workspace/<task_id>/`. Read `specs/simulation_spec.json` into variables and write to relative paths (`outputs/results/...`, `outputs/data/...`, `outputs/plots/...`).
+- For spatially varying conductivity $\nabla \cdot (\mathbf{K}(x,y,z) \nabla T) = 0$, use harmonic-mean half-node interface conductivities $k_{z, k \pm 1/2}$ rather than non-divergence central differences.

@@ -1,0 +1,6 @@
+1. Treat all files inside the decoupled `tasks/` directory as strictly read-only.
+2. Execute each task inside its isolated `workspace/<task_id>/` sandbox without overwriting existing files in-place; all revisions are archived automatically in `workspace/<task_id>/.versions/`.
+3. Never hardcode physical constants, domain dimensions, grid sizes, or boundary values inside solver code; always load parameters into variables from `specs/simulation_spec.json` (parsed from `.md` and `.txt` files).
+4. Always save full 1D/2D/3D numerical field arrays incrementally to `outputs/results/simulation_fields.npz`, summary metrics to `outputs/data/summary_metrics.csv`, and figures to `outputs/plots/comparison.png`.
+5. Before finishing execution, reopen and verify every produced `.npz`/`.npy`, `.csv`, and `.png` file with `scripts/verify_outputs.py` and summarize intermediate field arrays with `scripts/inspect_results.py`.
+6. Knowledge lookup order: check `harness/skills/` (`SKILL.md`) first, then `library/INDEX.md` (`EXPERIENCE.md` and `skills_snapshot/`) second. If empty or mismatched to the PDE structure, skip them cleanly. When solving 1D, 2D, or 3D PDEs, load the `numerical_pde` skill if applicable.
